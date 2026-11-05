@@ -1,0 +1,8 @@
+Package: com.example.bgtoggle
+Name: BGToggle
+Version: 1.0
+Architecture: iphoneos-arm
+Description: In-app button to keep the app running in background
+Maintainer: you
+Author: you
+Section: Tweaks
