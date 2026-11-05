@@ -5,6 +5,7 @@ include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = BGToggle
 BGToggle_FILES = Tweak.m
+BGToggle_LDFLAGS = -Wl,-headerpad_max_install_names
 BGToggle_FRAMEWORKS = UIKit AVFoundation
 BGToggle_CFLAGS = -fobjc-arc
 
