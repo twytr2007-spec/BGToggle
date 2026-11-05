@@ -9,23 +9,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Theos
-        run: |
-          brew install ldid
-          git clone --recursive https://github.com/theos/theos.git $HOME/theos
-          echo "THEOS=$HOME/theos" >> $GITHUB_ENV
-
       - name: Build
-        run: make
-
-      - name: Collect dylib
         run: |
           mkdir out
-          cp .theos/obj/debug/BGToggle.dylib out/BGToggle.dylib
-          codesign --remove-signature out/BGToggle.dylib
-          file out/BGToggle.dylib
-          ls -la out
-
+          xcrun --sdk iphoneos clang -arch arm64 -dynamiclib -fobjc-arc \
+            -miphoneos-version-min=13.0 \
+            -framework Foundation -framework UIKit -framework AVFoundation \
+            -Wl,-headerpad_max_install_names \
+            -install_name @rpath/BGToggle.dylib \
+            -o out/BGToggle.dylib Tweak.m
+          codesign --remove-signature out/BGToggle.dylib || true
+          otool -L out/BGToggle.dylib
 
       - uses: actions/upload-artifact@v4
         with:
