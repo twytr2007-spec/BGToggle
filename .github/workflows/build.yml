@@ -15,6 +15,7 @@ jobs:
           xcrun --sdk iphoneos clang -arch arm64 -dynamiclib -fobjc-arc \
             -miphoneos-version-min=13.0 \
             -framework Foundation -framework UIKit -framework AVFoundation \
+            -framework CoreGraphics -framework QuartzCore \
             -Wl,-headerpad_max_install_names \
             -install_name @rpath/BGToggle.dylib \
             -o out/BGToggle.dylib Tweak.m
