@@ -21,9 +21,11 @@ jobs:
       - name: Collect dylib
         run: |
           mkdir out
-          find .theos/obj -name "BGToggle.dylib" -exec cp {} out/ \;
-          ldid -r out/BGToggle.dylib
+          cp .theos/obj/debug/BGToggle.dylib out/BGToggle.dylib
+          codesign --remove-signature out/BGToggle.dylib
+          file out/BGToggle.dylib
           ls -la out
+
 
       - uses: actions/upload-artifact@v4
         with:
