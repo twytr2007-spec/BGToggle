@@ -2,7 +2,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 static AVAudioPlayer *player;
-static UIBackgroundTaskIdentifier bgTask = UIBackgroundTaskInvalid;
+static UIBackgroundTaskIdentifier bgTask = 0;
 static BOOL bgEnabled = NO;
 static UIWindow *btnWindow;
 static UIButton *btn;
